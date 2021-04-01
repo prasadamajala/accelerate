@@ -22,6 +22,12 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+//        testLocation()
+
+        testInternet()
+    }
+
+    private fun testLocation() {
         // Prompt location permission
 //        requestPermissions(arrayOf(Manifest.permission.ACCESS_FINE_LOCATION), 1001)
 
@@ -37,15 +43,28 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    private fun testInternet() {
+//       val status =  InternetUtils.isConnected(this)
+//        Log.e("MainActivity", "Internet availability: $status")
+//
+//        InternetUtils.isConnected(this) { isWifi, isMobile ->
+//            Log.e("MainActivity", "Internet availability- wifi: $isWifi, mobile: $isMobile")
+//        }
+
+        InternetUtils.listen(this) { isConnected, network ->
+            Log.e("MainActivity", "Internet - isConnected: $isConnected")
+        }
+    }
+
     override fun onResume() {
         super.onResume()
 
-        locationHelper.requestLocationUpdates()
+//        locationHelper.requestLocationUpdates()
     }
 
     override fun onPause() {
         super.onPause()
 
-        locationHelper.cancelLocationUpdates()
+//        locationHelper.cancelLocationUpdates()
     }
 }
