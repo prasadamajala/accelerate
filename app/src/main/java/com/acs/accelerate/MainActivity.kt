@@ -2,9 +2,12 @@ package com.acs.accelerate
 
 import android.Manifest
 import android.location.Location
+import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.widget.ImageView
+import com.bumptech.glide.Glide
 import com.google.android.gms.location.*
 import java.util.concurrent.TimeUnit
 
@@ -25,6 +28,11 @@ class MainActivity : AppCompatActivity() {
 //        testLocation()
 
         testInternet()
+
+        val imageView = findViewById<ImageView>(R.id.imageView)
+        Glide.with(this)
+            .load("https://developer.android.com/images/training/geofence_2x.png")
+            .into(imageView)
     }
 
     private fun testLocation() {
