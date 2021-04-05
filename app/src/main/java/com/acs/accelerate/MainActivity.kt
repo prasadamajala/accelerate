@@ -7,6 +7,8 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.widget.ImageView
+import com.acs.accelerate.data.AppPreferences
+import com.acs.accelerate.data.Preferences
 import com.bumptech.glide.Glide
 import com.google.android.gms.location.*
 import java.util.concurrent.TimeUnit
@@ -27,12 +29,28 @@ class MainActivity : AppCompatActivity() {
 
 //        testLocation()
 
-        testInternet()
+//        testInternet()
+//
+//        val imageView = findViewById<ImageView>(R.id.imageView)
+//        Glide.with(this)
+//            .load("https://developer.android.com/images/training/geofence_2x.png")
+//            .into(imageView)
 
-        val imageView = findViewById<ImageView>(R.id.imageView)
-        Glide.with(this)
-            .load("https://developer.android.com/images/training/geofence_2x.png")
-            .into(imageView)
+        testPrefs()
+    }
+
+    private fun testPrefs() {
+        // Usage 1
+        val appPreferences = AppPreferences(this)
+//        appPreferences.token = "mytoken34"
+        Log.e(TAG, "Token: ${appPreferences.token}")
+
+        // Usage 2
+        val preferences = Preferences.getInstance(this)
+        preferences.put("key1", "value1")
+        var value: String = preferences.get("key1", "null")
+        value += "\n" + preferences.get("key3", 6L)
+        Log.e(TAG, "Preferences: ${value}")
     }
 
     private fun testLocation() {
